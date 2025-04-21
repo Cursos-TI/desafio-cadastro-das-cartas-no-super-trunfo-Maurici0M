@@ -20,7 +20,9 @@ int main(){
     
     float 
     area_cidade_1, 
-    pib_cidade_1;
+    pib_cidade_1,
+    densidade_populacional_1,
+    pib_per_capta_1;
 
     //carta 2
     char 
@@ -34,7 +36,9 @@ int main(){
 
     float 
     area_cidade_2, 
-    pib_cidade_2;
+    pib_cidade_2,
+    densidade_populacional_2,
+    pib_per_capta_2;
 
     //Gerando valores para os codigos das cartas automaticamente
     codigo_carta_1 = (rand() % 10) + 1;      // de 1 a 10
@@ -49,7 +53,7 @@ int main(){
     );
 
     //declarando o estado
-    printf("\nDigite uma letra que representará o estado da carta 1: ");
+    printf("\nDigite uma letra para representar o estado da carta 1: ");
 
     scanf("%c", &estado_1);
 
@@ -122,6 +126,16 @@ int main(){
 
     scanf("%d", &pontos_turisticos_2);
 
+    //calculando densidade populacional (populacao / area);
+    densidade_populacional_1 = (populacao_1 / area_cidade_1);
+
+    densidade_populacional_2 = (populacao_2 / area_cidade_2);
+
+    //calculando o pib per capta (pib_cidade / populacao)
+    pib_per_capta_1 = (pib_cidade_1 / populacao_1);
+    
+    pib_per_capta_2 = (pib_cidade_2 / populacao_2);
+    
     //imprimindo as cartas no terminal
     
     printf(
@@ -132,10 +146,12 @@ int main(){
         "\nEstado: %c"
         "\nCódigo: %c%d"
         "\nNome da Cidade: %s"
-        "\nPopulação: %d"
-        "\nÁrea: %.2f m²" 
+        "\nPopulação: %d "
+        "\nÁrea: %.2f m² " 
         "\nPIB: R$ %.2f"
-        "\nNúmero de Pontos Turísticos: %d\n", 
+        "\nNúmero de Pontos Turísticos: %d"
+        "\nDensidade populacional: %.2f hab/km²"
+        "\nPIB per capta: R$ %.2f\n", 
 
         estado_1, 
         estado_1, codigo_carta_1, 
@@ -143,7 +159,9 @@ int main(){
         populacao_1, 
         area_cidade_1, 
         pib_cidade_1, 
-        pontos_turisticos_1
+        pontos_turisticos_1,
+        densidade_populacional_1,
+        pib_per_capta_1
     );
 
     printf(
@@ -155,7 +173,9 @@ int main(){
         "\nPopulação: %d"
         "\nÁrea: %.2f m²" 
         "\nPIB: R$ %.2f"
-        "\nNúmero de Pontos Turísticos: %d\n", 
+        "\nNúmero de Pontos Turísticos: %d"
+        "\nDensidade populacional: %.2f hab/km²"
+        "\nPIB per capta: R$ %.2f\n", 
 
         estado_2, 
         estado_2, codigo_carta_2, 
@@ -163,7 +183,9 @@ int main(){
         populacao_2, 
         area_cidade_2, 
         pib_cidade_2, 
-        pontos_turisticos_2
+        pontos_turisticos_2,
+        densidade_populacional_2,
+        pib_per_capta_2
     );
 
 
