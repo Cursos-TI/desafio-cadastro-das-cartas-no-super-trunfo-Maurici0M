@@ -11,18 +11,22 @@ int main(){
     //carta 1
     char 
     estado_1, 
-    nome_cidade_1[25];
+    nome_cidade_1[25],
+    mensagem_carta_vencedora;
     
     int 
     codigo_carta_1, 
-    populacao_1, 
     pontos_turisticos_1;
+    
+    unsigned long int 
+    populacao_1;
     
     float 
     area_cidade_1, 
     pib_cidade_1,
     densidade_populacional_1,
-    pib_per_capta_1;
+    pib_per_capta_1,
+    super_poder_1;
 
     //carta 2
     char 
@@ -31,14 +35,17 @@ int main(){
     
     int 
     codigo_carta_2, 
-    populacao_2, 
     pontos_turisticos_2;
+    
+    unsigned long int
+    populacao_2;
 
     float 
     area_cidade_2, 
     pib_cidade_2,
     densidade_populacional_2,
-    pib_per_capta_2;
+    pib_per_capta_2,
+    super_poder_2;
 
     //Gerando valores para os codigos das cartas automaticamente
     codigo_carta_1 = (rand() % 10) + 1;      // de 1 a 10
@@ -77,15 +84,15 @@ int main(){
         "\nVamos continuar! Digite o número de habitantes que terá em %s: ", nome_cidade_1
     );
 
-    scanf("%d", &populacao_1);
+    scanf("%u", &populacao_1);
     
     printf ("\nE na cidade de %s? Digite o número de habitantes: ", nome_cidade_2);
 
-    scanf("%d", &populacao_2);
+    scanf("%u", &populacao_2);
 
     //declarando a área das cidades
     printf(
-        "\nPensando que %s terá aproximadamente %d habitantes, qual será a área em m² dessa cidade? (Digite somente números) ", 
+        "\nPensando que %s terá aproximadamente %u habitantes, qual será a área em m² dessa cidade? (Digite somente números) ", 
         nome_cidade_1, populacao_1);
 
     scanf("%f", &area_cidade_1);
@@ -98,14 +105,14 @@ int main(){
 
     //declarando o PIB
     printf(
-        "\nMuito bem! Pensando que a cidade de %s terá aproximadamente %d habitantes e uma área aproximada de %.2f m², qual será o valor do PIB (Produto Interno Bruto) produzido anualmente por essa cidade? ", 
+        "\nMuito bem! Pensando que a cidade de %s terá aproximadamente %u habitantes e uma área aproximada de %.2f m², qual será o valor do PIB (Produto Interno Bruto) produzido anualmente por essa cidade? ", 
         nome_cidade_1, populacao_1, area_cidade_1
     );
 
     scanf("%f", &pib_cidade_1);
 
     printf(
-        "\nJá a cidade de %s, com seus %d habitantes e área aproximada de %.2f m², terá um PIB anual equivalente a quanto? ",
+        "\nJá a cidade de %s, com seus %u habitantes e área aproximada de %.2f m², terá um PIB anual equivalente a quanto? ",
         nome_cidade_2, populacao_2, area_cidade_2
     );
 
@@ -114,14 +121,14 @@ int main(){
     //declarando quantidade pontos turísticos
     printf(
         "\nQuase terminando!\n" 
-        "\nLevando em conta que a cidade de %s terá %d habitantes, e uma área de %.2f m², quantos pontos turísticos teremos nela? ", 
+        "\nLevando em conta que a cidade de %s terá %u habitantes, e uma área de %.2f m², quantos pontos turísticos teremos nela? ", 
         nome_cidade_1, populacao_1, area_cidade_1
     );
 
     scanf("%d", &pontos_turisticos_1);
     
     
-    printf("E na cidade de %s, com seus %d habitantes e área aproximada de %.2f m², terá quantos pontos turísticos? ", nome_cidade_2, populacao_2, area_cidade_2
+    printf("E na cidade de %s, com seus %u habitantes e área aproximada de %.2f m², terá quantos pontos turísticos? ", nome_cidade_2, populacao_2, area_cidade_2
     );
 
     scanf("%d", &pontos_turisticos_2);
@@ -135,7 +142,18 @@ int main(){
     pib_per_capta_1 = (pib_cidade_1 / populacao_1);
     
     pib_per_capta_2 = (pib_cidade_2 / populacao_2);
+
+    /*
+    calculando o superpoder somando todos os atributos numericos
     
+    (população, área, PIB, número de pontos turísticos, PIB per capita e o inverso da densidade populacional 
+    – quanto menor a densidade, maior o "poder")
+    */
+    super_poder_1 = (float) (populacao_1 + area_cidade_1 + pib_cidade_1 + pib_per_capta_1) - densidade_populacional_1;
+    
+    super_poder_2 = (float) (populacao_2 + area_cidade_2 + pib_cidade_2 + pib_per_capta_2) - densidade_populacional_2;
+
+
     //imprimindo as cartas no terminal
     
     printf(
@@ -146,12 +164,14 @@ int main(){
         "\nEstado: %c"
         "\nCódigo: %c%d"
         "\nNome da Cidade: %s"
-        "\nPopulação: %d "
+        "\nPopulação: %u "
         "\nÁrea: %.2f m² " 
         "\nPIB: R$ %.2f"
         "\nNúmero de Pontos Turísticos: %d"
         "\nDensidade populacional: %.2f hab/km²"
-        "\nPIB per capta: R$ %.2f\n", 
+        "\nPIB per capta: R$ %.2f"
+        "\nSuper poder: %.2f pontos\n"
+        "\n---------------------------------------------------------", 
 
         estado_1, 
         estado_1, codigo_carta_1, 
@@ -161,7 +181,8 @@ int main(){
         pib_cidade_1, 
         pontos_turisticos_1,
         densidade_populacional_1,
-        pib_per_capta_1
+        pib_per_capta_1,
+        super_poder_1
     );
 
     printf(
@@ -170,12 +191,14 @@ int main(){
         "\nEstado: %c"
         "\nCódigo: %c%d"
         "\nNome da Cidade: %s"
-        "\nPopulação: %d"
+        "\nPopulação: %u"
         "\nÁrea: %.2f m²" 
         "\nPIB: R$ %.2f"
         "\nNúmero de Pontos Turísticos: %d"
         "\nDensidade populacional: %.2f hab/km²"
-        "\nPIB per capta: R$ %.2f\n", 
+        "\nPIB per capta: R$ %.2f"
+        "\nSuper poder: %.2f pontos\n"
+        "\n---------------------------------------------------------", 
 
         estado_2, 
         estado_2, codigo_carta_2, 
@@ -185,9 +208,29 @@ int main(){
         pib_cidade_2, 
         pontos_turisticos_2,
         densidade_populacional_2,
-        pib_per_capta_2
+        pib_per_capta_2,
+        super_poder_2
     );
 
+    printf(
+        "\nComparando os atributos das cartas e encontrando os maiores valores: "
+
+        "\nPopulação: Carta 1 venceu? %d"
+        "\nÁrea: Carta 1 venceu? %d" 
+        "\nPIB: Carta 1 venceu? %d"
+        "\nNúmero de Pontos Turísticos: Carta 1 venceu? %d"
+        "\nDensidade populacional: Carta 1 venceu? %d"
+        "\nPIB per capta: Carta 1 venceu? %d"
+        "\nSuper poder: Carta 1 venceu? %d", 
+
+        populacao_1 > populacao_2 ? 1 : 0, 
+        area_cidade_1 > area_cidade_2 ? 1 : 0, 
+        pib_cidade_1 > pib_cidade_2 ? 1 : 0, 
+        pontos_turisticos_1 > pontos_turisticos_2 ? 1 : 0,
+        densidade_populacional_1 < densidade_populacional_2 ? 1: 0,
+        pib_per_capta_1 > densidade_populacional_2 ? 1 : 0,
+        super_poder_1 > super_poder_2 ? 1 : 0
+    );
 
     return 0;
 }
