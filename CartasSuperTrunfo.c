@@ -6,7 +6,7 @@
 
 int main(){
 
-    srand(time(NULL));  // necessario para iniciar o gerador de números aleatórios
+    srand(time(0));  // necessario para iniciar o gerador de números aleatórios
 
     //carta 1
     char 
